@@ -1,0 +1,117 @@
+<!doctype html> 
+<html lang="en"> 
+<head> 
+	<meta charset="UTF-8" />
+	<title>Phaser - Making your first game, part 2</title>
+    <script src="//cdn.jsdelivr.net/phaser/2.2.2/phaser.min.js"></script>
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+<script type="text/javascript">
+
+var game = new Phaser.Game(800, 1600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+    var cursor;
+
+function preload() {
+    game.load.image('background', 'assets/background.png');
+    game.load.image('bush', 'assets/bush.png');
+    game.load.image('branch', 'assets/branches.png');
+    game.load.image('checkpoint', 'assets/checkpoint.png');
+    game.load.spritesheet('chiefLarry', 'assets/chiefLarry.png',66, 60);
+    game.load.spritesheet('cat1', 'assets/cat1.png', 0, 48);
+    game.load.spritesheet('cat2', 'assets/cat2.png', 0, 48);
+    game.load.spritesheet('cat3', 'assets/cat3.png', 0, 48);
+    game.load.spritesheet('cat4', 'assets/cat4.png', 0, 48);
+}
+
+function create() {
+    cursors = game.input.keyboard.createCursorKeys();
+    game.physics.startSystem(Phaser.Physics.ARCADE);
+    game.add.sprite(0, 0, 'background');
+    
+    bushes = game.add.group();
+    branches = game.add.group();
+    checkpoint = game.add.group();
+    base = game.add.group();
+    
+    bushes.enableBody = true;
+    branches.enableBody = true;
+    checkpoint.enableBody = true;
+    base.enableBody = true;
+    
+    var bushPlatform = bushes.create(200,300, 'bush');
+    bushPlatform.body.imovable = true;
+    
+    var bushPlatform = bushes.create(200,300, 'bush');
+    bushPlatform.body.imovable = true;
+    
+    var bushPlatform = bushes.create(200,300, 'bush');
+    bushPlatform.body.imovable = true;
+    
+    var bushPlatform = bushes.create(200,300, 'bush');
+    bushPlatform.body.imovable = true;
+    
+    var bushPlatform = bushes.create(200,300, 'bush');
+    bushPlatform.body.imovable = true;
+    
+    var bushPlatform = bushes.create(200,300, 'bush');
+    bushPlatform.body.imovable = true;
+    
+    var bushPlatform = bushes.create(200,300, 'bush');
+    bushPlatform.body.imovable = true;
+    
+    var bushPlatform = bushes.create(200,300, 'bush');
+    bushPlatform.body.imovable = true;
+    
+    var bushPlatform = bushes.create(200,300, 'bush');
+    bushPlatform.body.imovable = true;
+    
+    var bushPlatform = bushes.create(200,300, 'bush');
+    bushPlatform.body.imovable = true;
+    
+    var bushPlatform = bushes.create(200,300, 'bush');
+    bushPlatform.body.imovable = true;
+    
+    var bushPlatform = bushes.create(200,300, 'bush');
+    bushPlatform.body.imovable = true;
+    
+    var bushPlatform = bushes.create(200,300, 'bush');
+    bushPlatform.body.imovable = true;
+    
+    var bushPlatform = bushes.create(200,300, 'bush');
+    bushPlatform.body.imovable = true;
+    
+    var bushPlatform = bushes.create(200,300, 'bush');
+    bushPlatform.body.imovable = true;
+    
+    var bushPlatform = bushes.create(200,300, 'bush');
+    bushPlatform.body.imovable = true;
+    
+    var bushPlatform = bushes.create(200,300, 'bush');
+    bushPlatform.body.imovable = true;
+    
+    var bushPlatform = bushes.create(200,300, 'bush');
+    bushPlatform.body.imovable = true;
+    
+    var bushPlatform = bushes.create(200,300, 'bush');
+    bushPlatform.body.imovable = true;
+    
+    var bushPlatform = bushes.create(200,300, 'bush');
+    bushPlatform.body.imovable = true;
+}
+
+function update() {
+    
+    }    
+
+
+
+</script>
+
+</body>
+</html>
