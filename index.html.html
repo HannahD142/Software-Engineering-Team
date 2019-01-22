@@ -39,6 +39,7 @@ function create() {
     game.add.sprite(0, 0, 'background');
     
     bushes = game.add.group();
+    
     branches = game.add.group();
     checkpoint = game.add.group();
     base = game.add.group();
@@ -135,7 +136,7 @@ function create() {
 }
 
 function update() {
- var hitPlatform = game.physics.arcade.collide(cat, bushPlatform);
+ var hitPlatform = game.physics.arcade.collide(cat, bushes);
     
     cat.body.velocity.x = 0;
     
@@ -160,7 +161,7 @@ function update() {
 
         cat.frame = 1;
     }    
-    }  
+      
     
     if (cursors.up.isDown)
     {
@@ -197,7 +198,7 @@ function update() {
         larry.body.velocity.y = -350;
     }
 
-
+}
 
 </script>
 
