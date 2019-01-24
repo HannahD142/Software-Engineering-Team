@@ -19,18 +19,21 @@ var game = new Phaser.Game(800, 1600, Phaser.AUTO, '', { preload: preload, creat
     var cat;
     var larry;
     var hitplatform;
-    var bushPlatform
+    var bushPlatform;
+    var scoreCat = 0;
+    var scoreLarry = 0;
+    var scoreTextCat;
+    var scoreTextLarry;
+    var platform;
 
 function preload() {
     game.load.image('background', 'assets/background.png');
     game.load.image('bush', 'assets/bush.png');
     game.load.image('branch', 'assets/branches.png');
     game.load.image('checkpoint', 'assets/checkpoint.png');
+    game.load.image('platform', 'assets/Ground.png');
     game.load.spritesheet('chiefLarry', 'assets/chiefLarry.png',66, 60);
     game.load.spritesheet('cat1', 'assets/newcat1.png', 62, 50);
-    game.load.spritesheet('cat2', 'assets/cat2.png', 99, 60);
-    game.load.spritesheet('cat3', 'assets/cat3.png', 99, 60);
-    game.load.spritesheet('cat4', 'assets/cat4.png', 99, 60);
 }
 
 function create() {
@@ -39,16 +42,16 @@ function create() {
     game.add.sprite(0, 0, 'background');
     
     bushes = game.add.group();
-    
-    branches = game.add.group();
+    platforms = game.add.group();
     checkpoint = game.add.group();
     base = game.add.group();
     
     bushes.enableBody = true;
     branches.enableBody = true;
     checkpoint.enableBody = true;
-    base.enableBody = true;
+    platforms.enableBody = true;
     
+    var ground = platforms.create(0, 1525, 'platform')
     var bushPlatform = bushes.create(150,300, 'bush');
     bushPlatform.body.immovable = true;
     
@@ -118,6 +121,25 @@ function create() {
     var bushPlatform = bushes.create(390,225, 'bush');
     bushPlatform.body.immovable = true;
     
+    var bushPlatform = bushes.create(0,1575, 'bush');
+    bushPlatform.body.immovable = true;
+    
+    var bushPlatform = bushes.create(150,1575, 'bush');
+    bushPlatform.body.immovable = true;
+    
+    var bushPlatform = bushes.create(300,1575, 'bush');
+    bushPlatform.body.immovable = true;
+    
+    var bushPlatform = bushes.create(450,1575, 'bush');
+    bushPlatform.body.immovable = true;    
+    
+    var bushPlatform = bushes.create(600,1575, 'bush');
+    bushPlatform.body.immovable = true;   
+    
+    var bushPlatform = bushes.create(750,1575, 'bush');
+    bushPlatform.body.immovable = true;
+    
+    
     cat = game.add.sprite(99, game.world.height, 'cat1');
     game.physics.arcade.enable(cat);
     cat.body.bounce.y = 0.2;
@@ -126,17 +148,24 @@ function create() {
     cat.animations.add('left',[0, 1, 2,],10, true);
     cat.animations.add('right', [3, 4, 5],10, true);
     
-    larry = game.add.sprite(66, game.world.height, 'chiefLarry');
+    larry = game.add.sprite(game.world.width - 250, game.world.height, 'chiefLarry');
     game.physics.arcade.enable(larry);
     larry.body.bounce.y = 0.2;
-    larry.body.gravity.y = 300;
+    larry.body.gravity.y = 500;
     larry.body.collideWorldBounds = true;
+    //animations for left and right
     larry.animations.add('left',[0, 1, 2,],10, true);
     larry.animations.add('right', [3, 4, 5],10, true);
+    
+     game.camera.follow(player);
+
 }
 
 function update() {
- var hitPlatform = game.physics.arcade.collide(cat, bushes);
+ var hitBush = game.physics.arcade.collide(cat, bushes);
+ var hitPlatform = game.physics.arcade.collide(cat, platforms);
+ var hitPlatform = game.physics.arcade.collide(larry, bushes);
+
     
     cat.body.velocity.x = 0;
     
@@ -163,41 +192,42 @@ function update() {
     }    
       
     
-    if (cursors.up.isDown)
+    if (cursors.up.isDown && hitPlatform || cursors.up.isDown && hitBush)
     {
         cat.body.velocity.y = -350;
     }
     
+    //Larry's movements
     larry.body.velocity.x = 0;
     
     if (game.input.keyboard.isDown(Phaser.Keyboard.KeyA))
     {
         //  Move to the left
         larry.body.velocity.x = -150;
-
         larry.animations.play('left');
     }
     else if (game.input.keyboard.isDown(Phaser.Keyboard.KeyD))
     {
         //  Move to the right
         larry.body.velocity.x = 150;
-
         larry.animations.play('right');
     }
     else
     {
         //  Stand still
         larry.animations.stop();
-
         larry.frame = 1;
     }    
       
     
-    if (game.input.keyboard.isDown(Phaser.Keyboard.KeyW))
+    if (game.input.keyboard.isDown(Phaser.Keyboard.KeyW) && cat.body.touching.down && hitPlatform)
     {
         larry.body.velocity.y = -350;
     }
-
+}
+function render() {
+    game.debug.cameraInfo(game.camera, 32, 32);
+    game.debug.spriteCoords(player, 32, 500);
 }
 
 </script>
